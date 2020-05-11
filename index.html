@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollol</title>
+</head>
+
+<body>
+    <p style="font-size: 15em; line-height: 1.2;height: 100%;" id="data">Lorem ipsum dolor sit
+        amet, consectetur
+        adipisicing elit. Nesciunt, saepe autem sunt iste ullam earum deleniti natus numquam ducimus eveniet dolorum
+        neque eaque quo enim possimus perspiciatis nulla ab facere.</p>
+    <script>
+        var scrollableElement = document.body; //document.getElementById('scrollableElement');
+
+        scrollableElement.addEventListener('wheel', checkScrollDirection);
+        var scrollCount = 1
+
+        function checkScrollDirection(event) {
+            if (checkScrollDirectionIsUp(event) && scrollCount < 1.1) {
+                console.log('UP');
+                scrollCount += 0.01;
+                console.log(scrollCount)
+
+            } else {
+                console.log('Down');
+                scrollCount -= 0.01;
+            }
+
+            data.style.lineHeight = scrollCount
+
+
+        }
+
+        function checkScrollDirectionIsUp(event) {
+            if (event.wheelDelta) {
+                return event.wheelDelta > 0;
+            }
+            return event.deltaY < 0;
+        }
+    </script>
+</body>
+
+</html>
